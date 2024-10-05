@@ -1,6 +1,8 @@
 package com.sam.server.service;
 
+import com.sam.server.model.Player;
 import com.sam.server.model.User;
+import com.sam.server.repository.PlayerRepository;
 import com.sam.server.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,9 +12,18 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PlayerRepository playerRepository;
 
     public void registerUser(User user) {
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        Player player = new Player();
+        player.setUsername(savedUser.getUsername());
+        player.setLevel(1);
+        player.setExperience(0L);
+        player.setGold(100L);
+        player.setFood(100L);
+        player.setMana(100L);
+        playerRepository.save(player);
     }
 
     public boolean loginUser(String username, String password) {

@@ -7,14 +7,20 @@ import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
   const navigate = useNavigate();
-  const { login, checkLoginStatus, isLoggedIn } = useAuth();
+  const {
+    login,
+    checkLoginStatus,
+    isLoggedIn,
+    currentPlayer,
+    fetchPlayerData,
+  } = useAuth();
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && currentPlayer) {
       navigate("/", { replace: true });
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, currentPlayer, navigate]);
 
   const handleRegister = async (userData) => {
     try {
@@ -24,10 +30,14 @@ const AuthPage = () => {
         body: JSON.stringify(userData),
       });
       const result = await response.json();
-      setMessage(result.message);
+
       if (result.success) {
-        login(userData);
+        // 회원가입 성공 시 로그인 처리
+        login(result.user);
+        // 플레이어 생성 및 데이터 가져오기
+        await fetchPlayerData();
       }
+      setMessage(result.message || "회원가입에 실패했습니다.");
     } catch (error) {
       console.error("Error:", error);
       setMessage("회원가입에 실패했습니다.");
@@ -42,9 +52,10 @@ const AuthPage = () => {
         body: JSON.stringify(userData),
       });
       const result = await response.json();
-      
-      if (response.ok) { // status가 200-299 사이일 때
-        login(userData);
+
+      if (response.ok) {
+        login(result.user);
+        await fetchPlayerData(); // 플레이어 데이터 가져오기
         setMessage("로그인 성공");
       } else {
         setMessage(result.message || "로그인에 실패했습니다.");

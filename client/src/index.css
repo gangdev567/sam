@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+    font-family: 'DOSGothic';
+    src: url('./fonts/DOSGothic.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'DOSIyagiBoldface';
+src: url('./fonts/DOSIyagiBoldface.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'DOSMyungjo';
+src: url('./fonts/DOSMyungjo.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'DOSPilgi';
+src: url('./fonts/DOSPilgi.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'DOSSaemmul';
+src: url('./fonts/DOSSaemmul.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'MiraeroNormal';
+src: url('./fonts/MiraeroNormal.ttf') format('truetype');
+}
+
+@font-face {
+font-family: 'Sam3KRFont';
+src: url('./fonts/Sam3KRFont.ttf') format('truetype');
+}
