@@ -7,6 +7,8 @@ import HeroDetail from "./components/HeroDetail";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme";
+import MonsterHunt from "./components/MonsterList";
+import MonsterDetail from "./components/MonsterDetail";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path="/login" element={<AuthPage />} />
             <Route path="/" element={<HeroList />} />
             <Route path="/heroes/:heroId" element={<HeroDetail />} />
+            <Route path="/hunt-monsters" element={<MonsterHunt />} />{" "}
+            <Route path="/monsters/:monsterId" element={<MonsterDetail />} />
           </Routes>
           <ToastContainer />
         </Router>

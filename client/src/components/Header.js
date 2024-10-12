@@ -47,6 +47,14 @@ const Header = () => {
             <Button
               variant="contained"
               color="secondary"
+              onClick={() => navigate("/hunt-monsters")}
+              sx={{ mr: 2 }}
+            >
+              몬스터 사냥
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
               onClick={handleLogout}
             >
               로그아웃

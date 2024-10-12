@@ -36,8 +36,8 @@ public class Skill {
     private Integer cooldown;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hero_id", nullable = false)
-    private Hero hero;
+    @JoinColumn(name = "owner_id", nullable = false)
+    private SkillOwner owner;
 
     @Column(nullable = false)
     private Integer level;

@@ -12,6 +12,7 @@ import com.sam.server.model.Skill;
 import com.sam.server.repository.HeroRepository;
 import com.sam.server.repository.PlayerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +66,19 @@ public class HeroService {
         dto.setBlockChance(hero.getBlockChance());
         dto.setBlockAmount(hero.getBlockAmount());
         dto.setImage(hero.getImage());
-        dto.setSkills(hero.getSkills().stream().map(this::mapSkillToDto).collect(Collectors.toList()));
+
+        // SkillOwner를 통해 스킬 목록에 접근
+        List<SkillDTO> skillDTOS;
+        if (hero.getSkillOwner() != null) {
+            skillDTOS = hero.getSkillOwner().getSkills()
+                .stream()
+                .map(this::mapSkillToDto)
+                .collect(Collectors.toList());
+        } else {
+            skillDTOS = Collections.emptyList();
+        }
+        dto.setSkills(skillDTOS);
+
         dto.setEquipmentSlots(hero.getEquipmentSlots().stream().map(this::mapEquipmentSlotToDto).collect(Collectors.toList()));
 
         return dto;

@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.Date;
 import java.util.List;
@@ -91,9 +92,6 @@ public class Hero {
     private Double blockAmount;
 
     @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Skill> skills;
-
-    @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EquipmentSlot> equipmentSlots;
 
     @Column(updatable = false)
@@ -105,4 +103,7 @@ public class Hero {
 
     @Column(nullable = false)
     private String image;
+
+    @OneToOne(mappedBy = "hero", cascade = CascadeType.ALL, orphanRemoval = true)
+    private SkillOwner skillOwner;
 }
