@@ -1,9 +1,9 @@
 // src/pages/estates/EstatePage.js
 import React, { useContext, useState } from "react";
-import EstateMenu from "./EstateMenu";
+import EstateMenu from "../../components/estates/EstateMenu";
 import BuildingManager from "../../components/buildings/BuildingManager";
 import { Button } from "@mui/material";
-import EstateMap from "./EstateMap";
+import EstateMap from "../../components/estates/EstateMap";
 import { AppContext } from "../../context/AppContext";
 import ResourceManager from "../../components/resources/ResourceManager";
 import DefenseManager from "../../components/defenseFacilities/DefenseManager";
