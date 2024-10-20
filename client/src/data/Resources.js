@@ -1,3 +1,4 @@
+// data/resources.js
 import Resource from "../models/Resource";
 
 const resources = [

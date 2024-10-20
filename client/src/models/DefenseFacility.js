@@ -62,9 +62,7 @@ class DefenseFacility {
 
         console.log(`[${this.name}]이(가) 수리되었습니다.`);
       } else {
-        console.log(
-          `[${this.name}] 수리 진행 중... (${this.repaireProgress}%)`
-        );
+        console.log(`[${this.name}] 수리 진행 중... (${this.repairProgress}%)`);
       }
     }
   }

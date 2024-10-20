@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+// src/pages/estates/EstatePage.js
+import React, { useContext, useState } from "react";
 import EstateMenu from "./EstateMenu";
 import BuildingManager from "../../components/buildings/BuildingManager";
 import { Button } from "@mui/material";
 import EstateMap from "./EstateMap";
+import { AppContext } from "../../context/AppContext";
+import ResourceManager from "../../components/resources/ResourceManager";
+import DefenseManager from "../../components/defenseFacilities/DefenseManager";
+import PopulationManager from "../../components/populations/PopulationManager";
+import ResearchManager from "../../components/researches/ResearchManager";
 
 const EstatePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { appState } = useContext(AppContext);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,7 +35,14 @@ const EstatePage = () => {
         <h1>Estate Overview</h1>
         {/* EstateMap 컴포넌트 */}
         <EstateMap />
-        <BuildingManager />
+        <BuildingManager buildings={appState.buildings} />
+        <ResourceManager
+          resources={appState.resources}
+          buildings={appState.buildings}
+        />
+        <DefenseManager />
+        <PopulationManager />
+        <ResearchManager />
       </main>
     </div>
   );
