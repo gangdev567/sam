@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import ResourceList from "../components/resources/ResourceList";
-import resources from "../data/Resources";
+import resources from "../data/resources";
 
 function ResourcePage() {
   const [autoProduce, setAutoProduce] = useState(false);

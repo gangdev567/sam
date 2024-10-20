@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HeroList from "../components/heroes/HeroList";
 import HeroDetail from "../components/heroes/HeroDetail";
-import heroes from "../data/Heroes";
+import heroes from "../data/heroes";
 
 function HeroPage() {
   const [selectedHero, setSelectedHero] = useState(null);
