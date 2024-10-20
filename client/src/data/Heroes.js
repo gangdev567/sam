@@ -1,4 +1,4 @@
-// data/heroes.js
+// data/Heroes.js
 
 import Hero from "../models/Hero.js";
 

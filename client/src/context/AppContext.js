@@ -7,6 +7,7 @@ import estates from "../data/Estates";
 import defenseFacilities from "../data/DefenseFacilities";
 import populations from "../data/Populations";
 import researches from "../data/Researches";
+import units from "../data/Units";
 
 export const AppContext = createContext();
 
@@ -19,6 +20,7 @@ export const AppProvider = ({ children }) => {
     heroes: [],
     populations: [],
     researches: [],
+    units: [],
   });
 
   useEffect(() => {
@@ -31,7 +33,22 @@ export const AppProvider = ({ children }) => {
       heroes,
       populations,
       researches,
+      units,
     }));
+
+    const produceResources = () => {
+      setAppState((prevState) => ({
+        ...prevState,
+        resources: prevState.resources.map((resource) => {
+          resource.produce();
+          return resource;
+        }),
+      }));
+    };
+
+    const intervalId = setInterval(produceResources, 1000); // 1초마다 자원 생산
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const updateResources = (newResources) => {
@@ -83,6 +100,13 @@ export const AppProvider = ({ children }) => {
     }));
   };
 
+  const updateUnits = (newUnits) => {
+    setAppState((prevState) => ({
+      ...prevState,
+      populations: newUnits,
+    }));
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -95,6 +119,7 @@ export const AppProvider = ({ children }) => {
         updateHeroes,
         updatePopulations,
         updateResearches,
+        updateUnits,
       }}
     >
       {children}

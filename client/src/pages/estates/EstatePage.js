@@ -9,6 +9,7 @@ import ResourceManager from "../../components/resources/ResourceManager";
 import DefenseManager from "../../components/defenseFacilities/DefenseManager";
 import PopulationManager from "../../components/populations/PopulationManager";
 import ResearchManager from "../../components/researches/ResearchManager";
+import MilitaryManager from "../../components/military/MilitaryManager";
 
 const EstatePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +44,7 @@ const EstatePage = () => {
         <DefenseManager />
         <PopulationManager />
         <ResearchManager />
+        <MilitaryManager />
       </main>
     </div>
   );
