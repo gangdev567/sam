@@ -1,31 +1,27 @@
-import { AuthProvider } from "./context/AuthContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AuthPage from "./pages/AuthPage";
-import Header from "./components/Header";
-import HeroList from "./components/HeroList";
-import HeroDetail from "./components/HeroDetail";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "@emotion/react";
+// App.js
+import React from "react";
 import theme from "./theme";
-import MonsterHunt from "./components/MonsterList";
-import MonsterDetail from "./components/MonsterDetail";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import HeroPage from "./pages/HeroPage";
+import { ThemeProvider } from "@mui/styles";
+import ResourcePage from "./pages/ResourcePage";
+import { Box } from "@mui/material";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/login" element={<AuthPage />} />
-            <Route path="/" element={<HeroList />} />
-            <Route path="/heroes/:heroId" element={<HeroDetail />} />
-            <Route path="/hunt-monsters" element={<MonsterHunt />} />{" "}
-            <Route path="/monsters/:monsterId" element={<MonsterDetail />} />
-          </Routes>
-          <ToastContainer />
-        </Router>
-      </AuthProvider>
+      <Router>
+        <Box sx={{ padding: 2, borderBottom: 1 }}>
+          <Link to="/" style={{ marginRight: 16 }}>
+            영웅 관리
+          </Link>
+          <Link to="/resources">리소스 관리</Link>
+        </Box>
+        <Routes>
+          <Route path="/" element={<HeroPage />} />
+          <Route path="/resources" element={<ResourcePage />} />
+        </Routes>
+      </Router>
     </ThemeProvider>
   );
 }
